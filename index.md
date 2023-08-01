@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: home_layout
 title: Home
 ---
 
@@ -12,3 +12,9 @@ I am a mathematician (third year Ph.D. student) working in areas of cluster alge
 - [CV](files/oliver-cv.pdf)    
 - [Academic webpage](https://www.maths.dur.ac.uk/users/oliver.j.daisey/)
 - [University webpage](https://www.durham.ac.uk/staff/oliver-j-daisey/)
+
+## Organisations
+
+- [Durham University](https://www.durham.ac.uk)
+- [Coltraco Ultrasonics](https://www.coltraco.co.uk)
+- [DIRDI](https://dirdi.org)
