@@ -1,15 +1,14 @@
 ---
 layout: default
+title: Home
 ---
 
 # Welcome to my personal website.
 
-I am a mathematician (third year Ph.D. student) working in areas of cluster algebras and tropical geometry. My academic supervisors are Anna Felikson and Tom Ducat.
+I am a mathematician (third year Ph.D. student) working in areas of cluster algebras and tropical geometry, especially in computationally rich problems. My academic supervisors are [Anna Felikson](https://www.maths.dur.ac.uk/users/anna.felikson/) and [Tom Ducat](https://sites.google.com/site/tomducatmaths/).
 
-## A wise quote
+## Useful links
 
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### LP algebra Sage cell
-
-Use this Sage cell to interact with my `LPASeed` class.
+- [CV](files/oliver-cv.pdf)    
+- [Academic webpage](https://www.maths.dur.ac.uk/users/oliver.j.daisey/)
+- [University webpage](https://www.durham.ac.uk/staff/oliver-j-daisey/)
