@@ -85,7 +85,7 @@ title: Events
     <div class="event-location">Edinburgh, UK</div>
     <div class="event-date">May 16-19</div>
     <div class="event-title">ICMS and MAC-MIGS Modelling Camp 2022</div>
-    <div class="event-description">A short modelling camp where participants split into groups and solve problems with industry problems. Our team came first place for designing and implementing preprocessing pipelines for underwater ROV imaging.</div>
+    <div class="event-description">A short modelling camp where participants split into groups and solve problems with industry partners. Our team came first place for designing and implementing preprocessing pipelines for underwater ROV imaging.</div>
 </div>
 
 
