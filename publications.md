@@ -5,8 +5,8 @@ title: Publications
 
 # Preprints
 
-(in progress): [Some combinatorial properties of linear LP algebras]()
-arXiv: [A Laurent phenomenon for the Cayley plane](https://arxiv.org/abs/2310.10223)
+- (in progress): [Some combinatorial properties of linear LP algebras]()
+- arXiv: [A Laurent phenomenon for the Cayley plane](https://arxiv.org/abs/2310.10223)
 
 # Conference publications
 
