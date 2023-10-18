@@ -5,7 +5,7 @@ title: Home
 
 # Welcome to my personal website.
 
-I am a mathematician (third year Ph.D. student) working in areas of cluster algebras and tropical geometry, especially in computationally rich problems. My academic supervisors are [Anna Felikson](https://www.maths.dur.ac.uk/users/anna.felikson/) and [Tom Ducat](https://sites.google.com/site/tomducatmaths/).
+I am a third year Ph.D. student in mathematics working in areas of cluster algebras and tropical geometry. My academic supervisors are [Anna Felikson](https://www.maths.dur.ac.uk/users/anna.felikson/) and [Yue Ren](https://www.yueren.de/). Previously I was supervised by [Tom Ducat](https://sites.google.com/site/tomducatmaths/).
 
 ## Useful links
 
