@@ -21,7 +21,7 @@
 title: Oliver Daisey
 email: oliverjdaisey@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Oliver Daisey's personal website.
+  My personal website.
 #baseurl: "" # the subpath of your site, e.g. /blog
 #url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: oliverdaisey
@@ -29,7 +29,7 @@ github_username:  oliverdaisey
 
 # Build settings
 #theme: minima
-remote_theme: pages-themes/hacker@v0.2.0
+remote_theme: pages-themes/modernist@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
 - jekyll-seo-tag

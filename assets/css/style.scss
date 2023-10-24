@@ -1,20 +1,31 @@
----
----
+--- 
+--- 
 
 @import "{{ site.theme }}";
 
+body {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+section {
+  font-size: 18px;
+}
+
 /* Style for the event container */
 .event-container {
-  border: 1px solid #ddd;
   padding: 10px;
   margin: 20px 0;
   border-radius: 5px;
 }
 
+
 /* Style for the location */
 .event-location {
   font-weight: bold;
-  color: #878787;
+  color: #545454;
 }
 
 /* Style for the date */
@@ -26,6 +37,62 @@
 .event-title {
   margin: 5px 0;
   font-size: 1.2em;
-  color: #b5e853;
+  color: #0026a2;
 }
 
+nav {
+  max-width: fit-content;
+  padding-top: 10px;
+}
+
+nav a {
+  font-size: 1.3em;
+  font-weight: bold;
+  padding: 5px;
+}
+
+nav a:hover {
+  color: #0026a2;
+}
+
+#home_main_content {
+  padding: 0;
+  margin: 0;
+  max-width: 1000px;
+}
+
+#home_layout {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+}
+
+#home_images {
+  overflow: hidden;
+  justify-content: center;
+}
+
+#home_images img {
+  max-width: 400px;
+  min-width: 10%;
+  border-radius: 32px;
+  margin: 0px;
+  padding: 10px;
+}
+
+#myname {
+  font-size: 3em;
+  font-weight:bold;
+  color: #080615;
+}
+
+#socials {
+  margin-left: auto;
+  
+}
+#socials img {
+  max-height: 48px;
+  padding-inline: 3px;
+}

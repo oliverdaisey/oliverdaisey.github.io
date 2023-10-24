@@ -1,45 +1,46 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    {% include head-custom.html %}
+<html lang="{{ site.lang | default: " en-US" }}">
 
-{% seo %}
-  </head>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  {% include head-custom.html %}
 
-  <body>
+  {% seo %}
+</head>
 
-    <header>
-      <div class="container">
-        <a id="a-title" href="{{ '/' | relative_url }}">
-          <h1>{{ site.title | default: site.github.repository_name }}</h1>
-        </a>
-        <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+<body>
 
-        <section id="downloads">
-          {% if site.show_downloads %}
-            <a href="{{ site.github.zip_url }}" class="btn">Download as .zip</a>
-            <a href="{{ site.github.tar_url }}" class="btn">Download as .tar.gz</a>
-          {% endif %}
-        </section>
-        <nav id="navbar">
-            <a href="index.html">Home</a>
-            <a href="publications.html">Publications</a>
-            <a href="events.html">Events</a>
-            <a href="code.html">Code</a>
-            <a href="files.html">Files</a>
-        </nav>
-      </div>
-    </header>
-
+  <header>
     <div class="container">
-      <section id="main_content">
-        <img src="../assets/my_profile.jpg" alt="A picture of Oliver" style="float: right; padding-left: 80px;" width="400" height="500">
-        {{ content }}
-      </section>
+      <a id="a-title" href="{{ '/' | relative_url }}">
+        <h1 id="myname">{{ site.title | default: site.github.repository_name }}</h1>
+      </a>
+
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="publications.html">Publications</a>
+        <a href="events.html">Events</a>
+        <a href="code.html">Code</a>
+        <a href="files.html">Files</a>
+      </nav>
     </div>
-  </body>
+  </header>
+
+  <div class="container">
+    <section id="main_content">
+      <div id="flex_container">
+        <div id="home_layout">
+          <div id="home_main_content">{{ content }}</div>
+          <div id="home_images">
+            <img src="../assets/my_profile.jpg" alt="A picture of Oliver">
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+
 </html>

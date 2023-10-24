@@ -3,11 +3,15 @@ layout: default
 title: Events
 ---
 
-# Upcoming events
-
-# Previous events
+# Events
 
 ## 2023
+ <div class="event-container">  
+    <div class="event-location">Paderborn, Germany</div>
+    <div class="event-date">September 19th-22nd</div>
+    <div class="event-title">Tropical Geometry Meeting</div>
+    <div class="event-description">A meeting for developers of the Julia OSCAR software package.</div>
+</div>
 
  <div class="event-container">  
     <div class="event-location">Coventry, UK</div>
