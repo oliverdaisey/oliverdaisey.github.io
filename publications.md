@@ -5,7 +5,7 @@ title: Publications
 
 # Journal articles
 
-- SIGMA 20 (2024) 033: [A Laurent phenomenon for the Cayley plane](http://sigma-journal.com/2024/033/)
+- SIGMA 20 (2024) 033: [A Laurent Phenomenon for the Cayley plane](http://sigma-journal.com/2024/033/)
 
 # Preprints
 
