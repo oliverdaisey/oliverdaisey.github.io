@@ -1326,7 +1326,11 @@ def _remove_repeat_indices(L):
 
 
 <div class="compute"><script type="text/x-sage">
-    var("x1,x2,x3") # variables
+var("x1,x2,x3") # variables
+
 coeffs = [var("a%d" %i) for i in range(1, 10)] # coefficients
+
 S = LPASeed({x1: a1 + a2*x2 + a3*x3, x2: a4 + a5*x1 + a6*x3, x3: a7 + a8*x1 + a9*x2})
-G = S.exchange_graph(); G.plot()</script></div>
+
+G = S.exchange_graph(); G.plot()
+</script></div>
