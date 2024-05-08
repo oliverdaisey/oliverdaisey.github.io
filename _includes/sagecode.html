@@ -2,11 +2,9 @@
 <meta name="viewport" content="width=device-width">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
 <script>
-// Make the div with id 'mycell' a Sage cell
 sagecell.makeSagecell({inputLocation:  '#mycell',
                         template:       sagecell.templates.minimal, linked: true, autoeval: true, linkKey: 'same', hide: ["editor","fullScreen","language","evalButton","permalink","output","done","sessionFiles"],
                         evalButtonText: 'Activate'});
-// Make *any* div with class 'compute' a Sage cell
 sagecell.makeSagecell({inputLocation: 'div.compute', linked: true, linkKey: 'same',  
                         evalButtonText: 'Evaluate'});
 </script>
