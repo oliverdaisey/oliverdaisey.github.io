@@ -5,4 +5,11 @@ permalink: /clan-talk/
 author_profile: false
 ---
 
-# CLAN Talk Notes
+## E6 Weight Polytope and Equations
+
+![Weight Polytope](/images/weight-polytope.png)
+
+## Linear Degenerations
+
+![Linear Degenerations](/images/linear-degenerations.png)
+
