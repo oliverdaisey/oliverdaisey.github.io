@@ -20,3 +20,7 @@ author_profile: false
 
 ![Linear Degenerations](/images/linear-degenerations.png)
 
+## Duality
+
+![Duality](/images/duality.png)
+
