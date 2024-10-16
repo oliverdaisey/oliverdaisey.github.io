@@ -1,6 +1,7 @@
 ---
 title: "A Laurent phenomenon for the Cayley plane"
 collection: publications
+coauthors: 'Tom Ducat'
 permalink: /publication/cayley-plane
 excerpt: 'We describe a Laurent phenomenon for the Cayley plane, which is the homogeneous variety associated to the cominuscule representation of $$E_6$$. The corresponding Laurent phenomenon algebra has finite type and appears in a natural sequence of LPAs indexed by the $$E_n$$ Dynkin diagrams for $$n\leq 6$$. We conjecture the existence of a further finite type LPA, associated to the Freudenthal variety of type $$E_7$$.'
 date: 'April 2024'

@@ -1,6 +1,7 @@
 ---
 title: "An opensource tool for filtered two-fluid simulations of fluidized gas-particle flows"
 collection: publications
+coauthors: 'Federico Municchi and Jan Cloete'
 permalink: /publication/fluids-open-source
 excerpt: 'We present a numerical solver based on the opensource finite volume library OpenFOAM that solves the filtered two-fluid equations for fluidized gas-particle flows using a wide range of diverse models developed in recent literature. We illustrate the phase coupling algorithm and discuss the implementation of the model of Sarkar et al. (2016). Finally, we compare the predictions from different constitutive models against experimental results using very coarse grids.'
 date: 'November 2020'
