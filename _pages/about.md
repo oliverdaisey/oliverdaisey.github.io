@@ -9,7 +9,7 @@ redirect_from:
 
 Welcome to my personal webite!
 
-I am a third year Mathematics PhD student at [Durham University](https://www.durham.ac.uk/staff/oliver-j-daisey/) working in computational geometry, with interests in algebraic geometry, cluster algebras, and tropical geometry. My primary research interests at the moment are *Laurent phenomenon algebras* and *tropical homotopy continuation*; I have written [software packages](https://github.com/oliverdaisey) for performing high speed computations in both areas. My academic supervisors are [Anna Felikson](https://www.maths.dur.ac.uk/users/anna.felikson/) and [Yue Ren](https://www.yueren.de/). Previously I was supervised by [Tom Ducat](https://sites.google.com/site/tomducatmaths/).
+I am a final year Mathematics PhD student at [Durham University](https://www.durham.ac.uk/staff/oliver-j-daisey/) working in computational geometry, with interests in algebraic geometry, cluster algebras, and tropical geometry. My primary research interests at the moment are *Laurent phenomenon algebras* and *tropical homotopy continuation*; I have written [software packages](https://github.com/oliverdaisey) for performing high speed computations in both areas. My academic supervisors are [Anna Felikson](https://www.maths.dur.ac.uk/users/anna.felikson/) and [Yue Ren](https://www.yueren.de/). Previously I was supervised by [Tom Ducat](https://sites.google.com/site/tomducatmaths/).
 
 I am a developer for the [OSCAR](https://docs.oscar-system.org/dev/) and [SageMath](https://www.sagemath.org/) mathematics software systems. My primary development machines run Ubuntu and MacOS.
 
