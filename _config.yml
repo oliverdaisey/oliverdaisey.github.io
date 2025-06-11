@@ -11,7 +11,7 @@ locale                   : "en-US"
 title                    : "Oliver Daisey"
 title_separator          : "&#124;"
 name                     : &name "Oliver Daisey"
-description              : &description "PhD Mathematics student and software engineer. My personal website."
+description              : &description "Mathematician and software engineer. My personal website."
 url                      : https://oliverdaisey.github.io # the base hostname & protocol for your site e.g. "https://oliverdaisey.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "oliverdaisey/oliverdaisey.github.io"
@@ -24,12 +24,12 @@ author:
   # Biographic information
   avatar           : "profile.jpg"
   name             : "Oliver Daisey"
-  pronouns         : "he/him" 
-  bio              : "PhD Mathematics student and software engineer."
+  pronouns         : "he/him"
+  bio              : "Mathematician and Software Engineer"
   location         : "Gateshead, UK"
-  employer         : "Durham University"
+  employer         : "traceoid.ai"
   uri              : # URL
-  email            : "oliver.j.daisey@durham.ac.uk" 
+  email            : "oliverjdaisey@gmail.com" 
 
   # Academic websites
   arxiv            : "https://arxiv.org/search/math?searchtype=author&query=Daisey,+O"
