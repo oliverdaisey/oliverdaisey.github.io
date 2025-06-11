@@ -1,5 +1,5 @@
 ---
-title: "Cluster Structures in the North"
+title: "Cluster Structures in the North II"
 collection: conferences
 type: "Conference"
 permalink: /conferences/csn-preston-2
