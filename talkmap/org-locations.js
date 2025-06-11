@@ -5,6 +5,11 @@ var addressPoints = [
     -2.3596963
   ],
   [
+    "Lancaster, UK",
+    54.0484068,
+    -2.7990345
+  ],
+  [
     "St. Andrews, UK",
     56.3403902,
     -2.7955844
@@ -30,6 +35,11 @@ var addressPoints = [
     -1.510477
   ],
   [
+    "Durham, UK",
+    54.666667,
+    -1.75
+  ],
+  [
     "Cambridge, UK",
     52.2055314,
     0.1186637
@@ -40,19 +50,34 @@ var addressPoints = [
     8.6820917
   ],
   [
-    "Paderborn, Germany",
-    51.71895955,
-    8.764869778177559
+    "Versailles, France",
+    48.8035403,
+    2.1266886
   ],
   [
-    "Chicago, USA",
-    41.8755616,
-    -87.6244212
+    "London, UK",
+    51.4893335,
+    -0.1440551
+  ],
+  [
+    "Turin, Italy",
+    45.0677551,
+    7.6824892
+  ],
+  [
+    "Paderborn, Germany",
+    51.7177044,
+    8.752653
+  ],
+  [
+    "Chicago, Michigan, USA",
+    41.8042288,
+    -86.6128591
   ],
   [
     "Stony Brook, NY, USA",
-    40.9256538,
-    -73.140943
+    40.908482,
+    -73.1325471
   ],
   [
     "Oxford, UK",
@@ -73,5 +98,15 @@ var addressPoints = [
     "Leeds, UK",
     53.7974185,
     -1.5437941
+  ],
+  [
+    "Leipzig, Germany",
+    51.3406321,
+    12.3747329
+  ],
+  [
+    "Okinawa, Japan",
+    26.5707754,
+    128.0255901
   ]
 ];
