@@ -36,6 +36,7 @@ Enter an integer radius and see how the circle looks when rasterised onto a squa
     <div style="font-size:0.9em;color:#444;margin-bottom:6px;">When radius &gt; 35, click the circle to inspect a 30×30 window.</div>
     <canvas id="zoom-canvas" width="240" height="240" style="width:240px;height:240px;border:1px solid #d0d7df;border-radius:6px;background:#fff;image-rendering:pixelated;"></canvas>
   </div>
+  <div id="raster-stats" style="margin-top:10px;font-weight:600;color:#0d70b8;"></div>
 </div>
 
 <script>
@@ -59,6 +60,13 @@ Enter an integer radius and see how the circle looks when rasterised onto a squa
   const zoomSpan = 30;
   let lastRaster = null;
 
+  function cellIntersectsCircle(x, y, radius) {
+    // Treat each pixel as a square of size 1 and check if the circle overlaps it.
+    const dx = Math.max(Math.abs(x) - 0.5, 0);
+    const dy = Math.max(Math.abs(y) - 0.5, 0);
+    return (dx * dx + dy * dy) <= radius * radius;
+  }
+
   function setZoomVisibility(radius) {
     if (!zoomControls) return;
     const show = radius > 35;
@@ -70,7 +78,7 @@ Enter an integer radius and see how the circle looks when rasterised onto a squa
 
   function drawZoom(centerX, centerY) {
     if (!lastRaster || !zoomCtx) return;
-    const { radius, size } = lastRaster;
+    const { filled, size } = lastRaster;
     const span = Math.min(zoomSpan, size);
     const half = Math.floor(span / 2);
     const startX = Math.max(0, Math.min(size - span, centerX - half));
@@ -87,9 +95,7 @@ Enter an integer radius and see how the circle looks when rasterised onto a squa
       for (let gx = 0; gx < span; gx += 1) {
         const gridX = startX + gx;
         const gridY = startY + gy;
-        const cx = gridX - radius;
-        const cy = radius - gridY;
-        if ((cx * cx + cy * cy) <= radius * radius) {
+        if (filled[gridY]?.[gridX]) {
           const dx = gx * zoomCell;
           const dy = gy * zoomCell;
           const grad = zoomCtx.createLinearGradient(dx, dy, dx + zoomCell, dy + zoomCell);
@@ -142,16 +148,44 @@ Enter an integer radius and see how the circle looks when rasterised onto a squa
     ctx.strokeStyle = '#d0d7df';
     ctx.lineWidth = 0.5;
 
+    const filled = Array.from({ length: size }, () => Array(size).fill(false));
+    let pixelCount = 0;
+
     for (let y = radius; y >= -radius; y -= 1) {
       for (let x = -radius; x <= radius; x += 1) {
-        const onCircle = (x * x + y * y) <= radius * radius;
-        if (onCircle) {
+        const intersects = cellIntersectsCircle(x, y, radius);
+        const gridX = x + radius;
+        const gridY = radius - y;
+        filled[gridY][gridX] = intersects;
+        if (intersects) {
           const drawX = (x + radius) * (cellSize + gapSize);
           const drawY = (radius - y) * (cellSize + gapSize);
           ctx.fillRect(drawX, drawY, cellSize, cellSize);
           ctx.strokeRect(drawX + 0.25, drawY + 0.25, cellSize - 0.5, cellSize - 0.5);
+          pixelCount += 1;
         }
       }
+    }
+
+    let boundaryCount = 0;
+    const neighborOffsets = [
+      [1, 0], [-1, 0], [0, 1], [0, -1]
+    ];
+    for (let gy = 0; gy < size; gy += 1) {
+      for (let gx = 0; gx < size; gx += 1) {
+        if (!filled[gy][gx]) continue;
+        const hasGap = neighborOffsets.some(([dx, dy]) => {
+          const nx = gx + dx;
+          const ny = gy + dy;
+          return nx < 0 || ny < 0 || nx >= size || ny >= size || !filled[ny][nx];
+        });
+        if (hasGap) boundaryCount += 1;
+      }
+    }
+
+    const stats = document.getElementById('raster-stats');
+    if (stats) {
+      stats.textContent = `Pixels: ${pixelCount.toLocaleString()} | Boundary pixels: ${boundaryCount.toLocaleString()}`;
     }
 
     ctx.restore();
@@ -162,7 +196,10 @@ Enter an integer radius and see how the circle looks when rasterised onto a squa
       cellSize,
       gapSize,
       offset,
-      scale
+      scale,
+      filled,
+      pixelCount,
+      boundaryCount
     };
     setZoomVisibility(radius);
   }
