@@ -7,28 +7,33 @@ redirect_from:
   - /about.html
 ---
 
-Welcome to my personal webite!
+Currently MTS @ [traceoid.ai](https://traceoid.ai), where we work on making large-scale second-order optimisation viable.
 
-I finished my PhD at [Durham University](https://www.durham.ac.uk/staff/oliver-j-daisey/) in June 2025, supervised by [Anna Felikson](https://www.maths.dur.ac.uk/users/anna.felikson/) and [Yue Ren](https://www.yueren.de/). Previously I was supervised by [Tom Ducat](https://sites.google.com/site/tomducatmaths/).
+I finished my PhD in mathematics at [Durham University](https://www.durham.ac.uk/staff/oliver-j-daisey/) (2025) supervised by [Anna Felikson](https://www.maths.dur.ac.uk/users/anna.felikson/) and [Yue Ren](https://www.yueren.de/), and previously by [Tom Ducat](https://sites.google.com/site/tomducatmaths/).
 
-I am working at [traceoid.ai](https://traceoid.ai) on scaling energy-based models. This involves a lot of exciting mathematics and physics, especially things I worked on during my PhD.
+Broad interests:
 
+- geometry (tropical, discrete, information)
+- spectral / trace methods
+- optimisation + ML
+- building real systems
 
-## Useful links
+I like bridging pure maths with things that actually run.
 
-- [CV](files/oliver-cv.pdf)    
-- [TropicalHomotopyContinuation.jl](https://github.com/oliverdaisey/TropicalHomotopyContinuation.jl)
-- [University webpage](https://www.durham.ac.uk/staff/oliver-j-daisey/)
-- [GitHub](http://www.github.com/oliverdaisey)
+---
 
-## Organisations
+### Links
 
-- [Coltraco Ultrasonics](https://www.coltraco.co.uk)
-- [DIRDI](https://dirdi.org)
+- [CV](files/oliver-cv.pdf) (outdated)
 
-## Tech stack (in order of daily use)
-Generally I am flexible with the languages I use for projects, but nowadays I find myself using the following most frequently:
-- [Python](https://www.python.org), [Kotlin](https://kotlinlang.org), [Julia](https://julialang.org), [Java](https://www.java.com)
-- [C++](https://isocpp.org)/[C](https://en.wikipedia.org/wiki/C_(programming_language))
-- [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
-- [JavaScript](https://www.javascript.com)/[TypeScript](https://www.typescriptlang.org)
+---
+
+### Organisations
+
+- [DIRDI](https://dirdi.org), Fellow
+- [St Mary's College, Durham](https://www.dur.ac.uk/stmarys/), Mentor
+- [Coltraco Ultrasonics](https://www.coltraco.com/), Software Engineer
+
+---
+
+You can reach me via GitHub or email.
