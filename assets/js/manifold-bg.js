@@ -4,13 +4,12 @@
     return;
   }
 
-  var ctx = canvas.getContext("2d");
+  var ctx = canvas.getContext("2d", { alpha: true, desynchronized: true });
   if (!ctx) {
     return;
   }
 
   var TAU = Math.PI * 2;
-  var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   var width = 0;
   var height = 0;
   var topOffset = 0;
@@ -18,10 +17,19 @@
   var cy = 0;
   var diskR = 0;
   var lastFrameTime = 0;
-  var frameInterval = 1000 / 34;
+  var frameInterval = 1000 / 28;
   var start = performance.now();
   var geodesicSeeds = [];
-  var SPEED = 0.5;
+  var SPEED = 0.42;
+  var running = true;
+  var resizePending = false;
+  var needsBaseRefresh = true;
+  var baseCanvas = document.createElement("canvas");
+  var baseCtx = baseCanvas.getContext("2d");
+  var renderScale = 1;
+  var dpr = 1;
+  var lineColorA = "rgba(112, 240, 161, ";
+  var lineColorB = "rgba(84, 206, 139, ";
 
   function fract(x) {
     return x - Math.floor(x);
@@ -48,54 +56,47 @@
       geodesicSeeds.push({
         a: base,
         b: base + span,
-        phase: i * 0.31
+        phase: i * 0.31,
+        useA: i % 3 === 0
       });
     }
   }
 
   function updateDensity() {
-    if (width <= 640) {
+    var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var threads = navigator.hardwareConcurrency || 4;
+
+    if (reducedMotion) {
+      renderScale = 0.72;
+      frameInterval = 1000 / 12;
+      initSeeds(10);
+      return;
+    }
+
+    if (width <= 640 || threads <= 4) {
+      renderScale = 0.78;
+      frameInterval = 1000 / 20;
+      initSeeds(12);
+    } else if (width <= 1100) {
+      renderScale = 0.84;
       frameInterval = 1000 / 24;
       initSeeds(16);
-    } else if (width <= 1100) {
-      frameInterval = 1000 / 30;
-      initSeeds(22);
     } else {
-      frameInterval = 1000 / 34;
-      initSeeds(28);
+      renderScale = 0.9;
+      frameInterval = 1000 / 28;
+      initSeeds(20);
     }
   }
 
-  function resize() {
-    var masthead = document.querySelector(".masthead");
-    topOffset = masthead ? Math.ceil(masthead.getBoundingClientRect().height) : 0;
-    width = window.innerWidth;
-    height = Math.max(1, window.innerHeight - topOffset);
-    canvas.width = Math.floor(width * dpr);
-    canvas.height = Math.floor(height * dpr);
-    canvas.style.top = topOffset + "px";
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    updateDensity();
-  }
+  function updateBaseLayer() {
+    if (!baseCtx || !width || !height) {
+      return;
+    }
 
-  function unitPoint(theta) {
-    return { x: Math.cos(theta), y: Math.sin(theta) };
-  }
+    baseCtx.setTransform(1, 0, 0, 1, 0, 0);
+    baseCtx.clearRect(0, 0, width, height);
 
-  function unitToScreen(p) {
-    return { x: cx + p.x * diskR, y: cy + p.y * diskR };
-  }
-
-  function drawDiskBase(t) {
-    var driftX = Math.sin(t * 0.22) * width * 0.018;
-    var driftY = Math.cos(t * 0.28) * height * 0.018;
-    cx = width * 0.5 + driftX;
-    cy = height * 0.53 + driftY;
-    diskR = Math.max(width, height) * 0.49;
-
-    var background = ctx.createRadialGradient(
+    var background = baseCtx.createRadialGradient(
       width * 0.5,
       height * 0.52,
       0,
@@ -105,8 +106,55 @@
     );
     background.addColorStop(0, "rgba(22, 52, 33, 0.23)");
     background.addColorStop(1, "rgba(5, 8, 5, 0)");
-    ctx.fillStyle = background;
-    ctx.fillRect(0, 0, width, height);
+    baseCtx.fillStyle = background;
+    baseCtx.fillRect(0, 0, width, height);
+
+    needsBaseRefresh = false;
+  }
+
+  function resize() {
+    var masthead = document.querySelector(".masthead");
+    topOffset = masthead ? Math.ceil(masthead.getBoundingClientRect().height) : 0;
+    width = window.innerWidth;
+    height = Math.max(1, window.innerHeight - topOffset);
+
+    updateDensity();
+
+    dpr = Math.min((window.devicePixelRatio || 1) * renderScale, 1);
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.top = topOffset + "px";
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    baseCanvas.width = width;
+    baseCanvas.height = height;
+    needsBaseRefresh = true;
+  }
+
+  function queueResize() {
+    if (resizePending) {
+      return;
+    }
+    resizePending = true;
+    window.requestAnimationFrame(function () {
+      resizePending = false;
+      resize();
+    });
+  }
+
+  function drawDiskBase(t) {
+    if (needsBaseRefresh) {
+      updateBaseLayer();
+    }
+    ctx.drawImage(baseCanvas, 0, 0);
+
+    var driftX = Math.sin(t * 0.22) * width * 0.014;
+    var driftY = Math.cos(t * 0.28) * height * 0.014;
+    cx = width * 0.5 + driftX;
+    cy = height * 0.53 + driftY;
+    diskR = Math.max(width, height) * 0.49;
 
     var disk = ctx.createRadialGradient(
       cx - diskR * 0.13,
@@ -116,15 +164,15 @@
       cy,
       diskR
     );
-    disk.addColorStop(0, "rgba(86, 230, 138, 0.12)");
+    disk.addColorStop(0, "rgba(86, 230, 138, 0.11)");
     disk.addColorStop(1, "rgba(33, 95, 57, 0.02)");
     ctx.fillStyle = disk;
     ctx.beginPath();
     ctx.arc(cx, cy, diskR, 0, TAU);
     ctx.fill();
 
-    ctx.lineWidth = 1.3;
-    ctx.strokeStyle = "rgba(150, 255, 190, 0.24)";
+    ctx.lineWidth = 1.2;
+    ctx.strokeStyle = "rgba(150, 255, 190, 0.2)";
     ctx.beginPath();
     ctx.arc(cx, cy, diskR, 0, TAU);
     ctx.stroke();
@@ -134,90 +182,87 @@
     ctx.arc(cx, cy, diskR, 0, TAU);
     ctx.clip();
 
-    var ringAlpha = 0.07 + 0.03 * Math.sin(t * 0.6);
-    for (var i = 1; i <= 5; i += 1) {
+    var ringAlpha = 0.06 + 0.025 * Math.sin(t * 0.6);
+    for (var i = 1; i <= 4; i += 1) {
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(120, 215, 150, " + (ringAlpha * (1 - i / 7)).toFixed(3) + ")";
+      ctx.strokeStyle = "rgba(120, 215, 150, " + (ringAlpha * (1 - i / 6)).toFixed(3) + ")";
       ctx.beginPath();
-      ctx.arc(cx, cy, diskR * (i / 6), 0, TAU);
+      ctx.arc(cx, cy, diskR * (i / 5), 0, TAU);
       ctx.stroke();
     }
 
-    var spokes = 12;
-    var spokeRotation = t * 0.12;
-    ctx.strokeStyle = "rgba(120, 215, 150, 0.055)";
+    var spokes = 10;
+    var spokeRotation = t * 0.1;
+    ctx.strokeStyle = "rgba(120, 215, 150, 0.045)";
     for (var s = 0; s < spokes; s += 1) {
       var a = spokeRotation + (s / spokes) * TAU;
+      var ca = Math.cos(a);
+      var sa = Math.sin(a);
       ctx.beginPath();
-      ctx.moveTo(cx + Math.cos(a) * diskR, cy + Math.sin(a) * diskR);
-      ctx.lineTo(cx - Math.cos(a) * diskR, cy - Math.sin(a) * diskR);
+      ctx.moveTo(cx + ca * diskR, cy + sa * diskR);
+      ctx.lineTo(cx - ca * diskR, cy - sa * diskR);
       ctx.stroke();
     }
 
     ctx.restore();
   }
 
-  function drawGeodesic(u, v, alpha, color) {
-    var det = u.x * v.y - u.y * v.x;
-    ctx.strokeStyle = color.replace("__A__", alpha.toFixed(3));
-    ctx.lineWidth = 1.05;
+  function drawGeodesic(ux, uy, vx, vy, alpha, useA) {
+    var det = ux * vy - uy * vx;
+    ctx.strokeStyle = (useA ? lineColorA : lineColorB) + alpha.toFixed(3) + ")";
+    ctx.lineWidth = 1;
 
-    if (Math.abs(det) < 0.028) {
-      var su = unitToScreen(u);
-      var sv = unitToScreen(v);
+    if (Math.abs(det) < 0.035) {
       ctx.beginPath();
-      ctx.moveTo(su.x, su.y);
-      ctx.lineTo(sv.x, sv.y);
+      ctx.moveTo(cx + ux * diskR, cy + uy * diskR);
+      ctx.lineTo(cx + vx * diskR, cy + vy * diskR);
       ctx.stroke();
       return;
     }
 
-    var c = {
-      x: (v.y - u.y) / det,
-      y: (u.x - v.x) / det
-    };
-    var cNormSq = c.x * c.x + c.y * c.y;
+    var ccx = (vy - uy) / det;
+    var ccy = (ux - vx) / det;
+    var cNormSq = ccx * ccx + ccy * ccy;
     var rSq = cNormSq - 1;
     if (rSq <= 0) {
       return;
     }
 
     var r = Math.sqrt(rSq);
-    var a1 = Math.atan2(u.y - c.y, u.x - c.x);
-    var a2 = Math.atan2(v.y - c.y, v.x - c.x);
+    var a1 = Math.atan2(uy - ccy, ux - ccx);
+    var a2 = Math.atan2(vy - ccy, vx - ccx);
     var d1 = normalizeAngle(a2 - a1);
     var d2 = d1 > 0 ? d1 - TAU : d1 + TAU;
 
     var m1 = a1 + d1 * 0.5;
-    var m2 = a1 + d2 * 0.5;
-    var p1x = c.x + r * Math.cos(m1);
-    var p1y = c.y + r * Math.sin(m1);
-    var p2x = c.x + r * Math.cos(m2);
-    var p2y = c.y + r * Math.sin(m2);
-
+    var p1x = ccx + r * Math.cos(m1);
+    var p1y = ccy + r * Math.sin(m1);
     var inside1 = p1x * p1x + p1y * p1y < 1;
     var delta = inside1 ? d1 : d2;
 
-    var segments = Math.max(18, Math.ceil(Math.abs(delta) * 16));
-    var first = true;
+    var segments = Math.max(10, Math.ceil(Math.abs(delta) * 10));
     ctx.beginPath();
     for (var i = 0; i <= segments; i += 1) {
       var t = i / segments;
       var ang = a1 + delta * t;
-      var px = c.x + r * Math.cos(ang);
-      var py = c.y + r * Math.sin(ang);
-      var sp = unitToScreen({ x: px, y: py });
-      if (first) {
-        ctx.moveTo(sp.x, sp.y);
-        first = false;
+      var px = ccx + r * Math.cos(ang);
+      var py = ccy + r * Math.sin(ang);
+      var sx = cx + px * diskR;
+      var sy = cy + py * diskR;
+      if (i === 0) {
+        ctx.moveTo(sx, sy);
       } else {
-        ctx.lineTo(sp.x, sp.y);
+        ctx.lineTo(sx, sy);
       }
     }
     ctx.stroke();
   }
 
   function renderFrame(now) {
+    if (!running) {
+      return;
+    }
+
     if (now - lastFrameTime < frameInterval) {
       window.requestAnimationFrame(renderFrame);
       return;
@@ -235,30 +280,42 @@
     ctx.arc(cx, cy, diskR, 0, TAU);
     ctx.clip();
 
-    var rot = animT * 0.16 + 0.08 * Math.sin(animT * 0.5);
-    var wobble = 0.15 * Math.cos(animT * 0.42);
-    var focus = ((Math.sin(animT * 0.85) + 1) * 0.5) * (geodesicSeeds.length - 1);
+    var rot = animT * 0.14 + 0.07 * Math.sin(animT * 0.5);
+    var wobble = 0.12 * Math.cos(animT * 0.42);
+    var focus = ((Math.sin(animT * 0.8) + 1) * 0.5) * (geodesicSeeds.length - 1);
 
     for (var i = 0; i < geodesicSeeds.length; i += 1) {
       var s = geodesicSeeds[i];
-      var pulse = Math.exp(-Math.pow((i - focus) / 3.3, 2));
-      var alpha = 0.05 + pulse * 0.2;
+      var dist = (i - focus) / 3.2;
+      var pulse = Math.exp(-(dist * dist));
+      var alpha = 0.045 + pulse * 0.16;
 
-      var a = s.a + rot + 0.05 * Math.sin(animT * 0.9 + s.phase);
-      var b = s.b - rot * 0.36 + wobble + 0.09 * Math.sin(animT * 0.65 + s.phase * 1.8);
-      var u = unitPoint(a);
-      var v = unitPoint(b);
-
-      var color = i % 3 === 0 ? "rgba(112, 240, 161, __A__)" : "rgba(84, 206, 139, __A__)";
-      drawGeodesic(u, v, alpha, color);
+      var a = s.a + rot + 0.045 * Math.sin(animT * 0.9 + s.phase);
+      var b = s.b - rot * 0.34 + wobble + 0.075 * Math.sin(animT * 0.64 + s.phase * 1.8);
+      drawGeodesic(Math.cos(a), Math.sin(a), Math.cos(b), Math.sin(b), alpha, s.useA);
     }
 
     ctx.restore();
     window.requestAnimationFrame(renderFrame);
   }
 
-  window.addEventListener("resize", resize);
+  function updateRunningState() {
+    var nextRunning = document.visibilityState !== "hidden";
+    if (nextRunning && !running) {
+      running = true;
+      lastFrameTime = 0;
+      window.requestAnimationFrame(renderFrame);
+    } else {
+      running = nextRunning;
+    }
+  }
+
+  window.addEventListener("resize", queueResize);
+  document.addEventListener("visibilitychange", updateRunningState);
 
   resize();
-  renderFrame(performance.now());
+  updateRunningState();
+  if (running) {
+    renderFrame(performance.now());
+  }
 })();
