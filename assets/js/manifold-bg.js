@@ -28,8 +28,8 @@
   var baseCtx = baseCanvas.getContext("2d");
   var renderScale = 1;
   var dpr = 1;
-  var lineColorA = "rgba(112, 240, 161, ";
-  var lineColorB = "rgba(84, 206, 139, ";
+  var lineColorA = "rgba(143, 184, 255, ";
+  var lineColorB = "rgba(184, 160, 255, ";
 
   function fract(x) {
     return x - Math.floor(x);
@@ -104,8 +104,8 @@
       height * 0.52,
       Math.max(width, height) * 0.8
     );
-    background.addColorStop(0, "rgba(22, 52, 33, 0.23)");
-    background.addColorStop(1, "rgba(5, 8, 5, 0)");
+    background.addColorStop(0, "rgba(24, 36, 64, 0.28)");
+    background.addColorStop(1, "rgba(7, 9, 15, 0)");
     baseCtx.fillStyle = background;
     baseCtx.fillRect(0, 0, width, height);
 
@@ -164,15 +164,15 @@
       cy,
       diskR
     );
-    disk.addColorStop(0, "rgba(86, 230, 138, 0.11)");
-    disk.addColorStop(1, "rgba(33, 95, 57, 0.02)");
+    disk.addColorStop(0, "rgba(143, 184, 255, 0.12)");
+    disk.addColorStop(1, "rgba(40, 60, 110, 0.025)");
     ctx.fillStyle = disk;
     ctx.beginPath();
     ctx.arc(cx, cy, diskR, 0, TAU);
     ctx.fill();
 
     ctx.lineWidth = 1.2;
-    ctx.strokeStyle = "rgba(150, 255, 190, 0.2)";
+    ctx.strokeStyle = "rgba(180, 205, 255, 0.22)";
     ctx.beginPath();
     ctx.arc(cx, cy, diskR, 0, TAU);
     ctx.stroke();
@@ -185,7 +185,7 @@
     var ringAlpha = 0.06 + 0.025 * Math.sin(t * 0.6);
     for (var i = 1; i <= 4; i += 1) {
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(120, 215, 150, " + (ringAlpha * (1 - i / 6)).toFixed(3) + ")";
+      ctx.strokeStyle = "rgba(160, 190, 230," + (ringAlpha * (1 - i / 6)).toFixed(3) + ")";
       ctx.beginPath();
       ctx.arc(cx, cy, diskR * (i / 5), 0, TAU);
       ctx.stroke();
@@ -193,7 +193,7 @@
 
     var spokes = 10;
     var spokeRotation = t * 0.1;
-    ctx.strokeStyle = "rgba(120, 215, 150, 0.045)";
+    ctx.strokeStyle = "rgba(160, 190, 230,0.045)";
     for (var s = 0; s < spokes; s += 1) {
       var a = spokeRotation + (s / spokes) * TAU;
       var ca = Math.cos(a);

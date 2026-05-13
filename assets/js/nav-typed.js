@@ -1,5 +1,5 @@
 (function () {
-  var roles = ["maths", "software", "ML", "piano"];
+  var roles = ["mathematics", "machine learning", "optimisation", "geometry"];
   var el = document.getElementById("nav-typed-role");
 
   if (!el || !roles.length) {

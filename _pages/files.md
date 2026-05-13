@@ -2,19 +2,61 @@
 layout: archive
 title: "Files"
 permalink: /files/
-author_profile: true
+author_profile: false
 ---
 
-# Current files
-- [SCGP2022 Speed talk slides](../files/lp_algebras_scgp22.pdf)
-- [GANDALF Talk notes](../files/lp_algebras_talk.pdf)
+<ul class="files-list">
 
-### Legacy files
-- [Masters thesis](../files/qfktgc-article.pdf)
-- [Undergraduate project on Riemann-Roch](../files/undergrad_project.pdf)
-- Second-year undergraduate internship [paper](../files/internship_paper.pdf) and [poster](../files/undergrad_poster.pdf)
-- [Geometry of Numbers Lecture III notes](../files/Lecture_III_notes.pdf)
+  <li class="files-item">
+    <span class="files-item__year">2025</span>
+    <div class="files-item__body">
+      <a class="files-item__title" href="https://etheses.durham.ac.uk/id/eprint/16120/1/main.pdf">
+        PhD thesis
+        <span class="files-item__ext">↗</span>
+      </a>
+      <p class="files-item__meta">Durham University</p>
+    </div>
+  </li>
 
-### Files not hosted here
-- [Filtered two-fluid models code](https://github.com/fmuni/filteredTFM)
-- [SageMath fork with `LPASeed` changes](https://github.com/oliverdaisey/sage)
+  <li class="files-item">
+    <span class="files-item__year">2021</span>
+    <div class="files-item__body">
+      <a class="files-item__title" href="{{ '/files/qfktgc-article.pdf' | relative_url }}">
+        Masters thesis
+        <span class="files-item__ext">PDF</span>
+      </a>
+    </div>
+  </li>
+
+  <li class="files-item">
+    <span class="files-item__year">2020</span>
+    <div class="files-item__body">
+      <a class="files-item__title" href="{{ '/files/undergrad_project.pdf' | relative_url }}">
+        Undergraduate project on Riemann–Roch
+        <span class="files-item__ext">PDF</span>
+      </a>
+    </div>
+  </li>
+
+  <li class="files-item">
+    <span class="files-item__year">2018</span>
+    <div class="files-item__body">
+      <p class="files-item__group-label">Second-year internship</p>
+      <ul class="files-item__sublist">
+        <li>
+          <a class="files-item__title" href="{{ '/files/internship_paper.pdf' | relative_url }}">
+            Paper
+            <span class="files-item__ext">PDF</span>
+          </a>
+        </li>
+        <li>
+          <a class="files-item__title" href="{{ '/files/undergrad_poster.pdf' | relative_url }}">
+            Poster
+            <span class="files-item__ext">PDF</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </li>
+
+</ul>
