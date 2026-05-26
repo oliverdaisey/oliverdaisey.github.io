@@ -34,49 +34,6 @@ redirect_from:
     </div>
   </a>
 
-  <a class="home-card" href="/files/oliver-cv.pdf">
-    <figure class="home-card__media home-card__media--cv" aria-hidden="true">
-      <svg viewBox="0 0 240 150" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
-        <defs>
-          <linearGradient id="cvsheet" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="rgba(216,221,233,0.06)"/>
-            <stop offset="100%" stop-color="rgba(216,221,233,0.015)"/>
-          </linearGradient>
-        </defs>
-        <!-- back sheet -->
-        <rect x="68" y="22" width="120" height="118" rx="2" fill="url(#cvsheet)" stroke="rgba(160,190,230,0.18)" stroke-width="0.8"/>
-        <!-- front sheet -->
-        <rect x="56" y="14" width="124" height="122" rx="2" fill="rgba(15,19,30,0.85)" stroke="rgba(160,190,230,0.4)" stroke-width="0.9"/>
-        <!-- corner mark -->
-        <path d="M 160 14 L 180 14 L 180 34 Z" fill="rgba(143,184,255,0.18)" stroke="rgba(160,190,230,0.4)" stroke-width="0.8"/>
-        <!-- "name" -->
-        <rect x="66" y="28" width="64" height="6" rx="1" fill="rgba(216,221,233,0.55)"/>
-        <rect x="66" y="40" width="36" height="3" rx="1" fill="rgba(143,184,255,0.6)"/>
-        <!-- divider -->
-        <line x1="66" y1="52" x2="170" y2="52" stroke="rgba(160,190,230,0.25)" stroke-width="0.7"/>
-        <!-- entries -->
-        <g fill="rgba(216,221,233,0.18)">
-          <rect x="66" y="60" width="100" height="2.5" rx="1"/>
-          <rect x="66" y="66" width="80" height="2.5" rx="1"/>
-          <rect x="66" y="72" width="92" height="2.5" rx="1"/>
-        </g>
-        <g fill="rgba(216,221,233,0.18)">
-          <rect x="66" y="86" width="60" height="2.5" rx="1"/>
-          <rect x="66" y="92" width="90" height="2.5" rx="1"/>
-          <rect x="66" y="98" width="74" height="2.5" rx="1"/>
-        </g>
-        <g fill="rgba(216,221,233,0.18)">
-          <rect x="66" y="112" width="85" height="2.5" rx="1"/>
-          <rect x="66" y="118" width="55" height="2.5" rx="1"/>
-        </g>
-      </svg>
-    </figure>
-    <div class="home-card__body">
-      <p class="home-card__kicker">Curriculum Vitae</p>
-      <h2 class="home-card__title">CV <span class="home-card__suffix">(PDF)</span></h2>
-    </div>
-  </a>
-
   <a class="home-card" href="/files/">
     <figure class="home-card__media home-card__media--files" aria-hidden="true">
       <svg viewBox="0 0 240 150" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
