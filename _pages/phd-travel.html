@@ -1,0 +1,12 @@
+---
+layout: archive
+title: "PhD travel"
+permalink: /events/phd-travel/
+author_profile: true
+---
+
+<p>Conferences, workshops, and seminars I attended during my PhD (2021&ndash;2025).</p>
+
+{% for post in site.talks reversed %}
+  {% include archive-single-talk.html %}
+{% endfor %}
