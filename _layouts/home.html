@@ -1,0 +1,12 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<div id="main" role="main">
+  <article class="home" itemscope itemtype="http://schema.org/Person">
+    <h1 class="sr-only" itemprop="name">{{ site.author.name }}</h1>
+    {{ content }}
+  </article>
+</div>

@@ -1,0 +1,17 @@
+{% include base_path %}
+
+<header class="masthead">
+  <a class="masthead__name" href="{{ base_path }}/">{{ site.title }}</a>
+  <nav aria-label="Main">
+    <ul class="masthead__nav">
+      {% for link in site.data.navigation.main %}
+        {% if link.url contains 'http' %}
+          {% assign domain = '' %}
+        {% else %}
+          {% assign domain = base_path %}
+        {% endif %}
+        <li><a href="{{ domain }}{{ link.url }}"{% if page.url contains link.url %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>

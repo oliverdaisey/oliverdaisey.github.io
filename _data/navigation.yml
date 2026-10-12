@@ -1,0 +1,13 @@
+# main links links
+main:
+  - title: "Publications"
+    url: /publications/
+
+  - title: "Events"
+    url: /events/       
+
+  - title: "Code"
+    url: /code/    
+
+  - title: "Files"
+    url: /files/

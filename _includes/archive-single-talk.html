@@ -1,0 +1,17 @@
+{% include base_path %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+<article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  <span class="archive__item-year">{% if post.date %}{{ post.date | date: "%Y" }}{% endif %}</span>
+  <div class="archive__item-body">
+    <h2 class="archive__item-title" itemprop="headline"><a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a></h2>
+    {% if post.venue %}<p class="archive__item-meta">{{ post.type }}, {{ post.venue }}, {{ post.location }}</p>{% endif %}
+    {% if post.date %}<p class="archive__item-meta">{{ post.date | date: '%-d %B' }} to {{ post.date-finish | date: '%-d %B %Y' }}</p>{% endif %}
+    {% if post.excerpt %}<div class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</div>{% endif %}
+  </div>
+</article>

@@ -1,0 +1,36 @@
+{% include base_path %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+{% if post.collection == 'publications' and post.paperurl %}
+  {% assign href = post.paperurl %}
+{% elsif post.link %}
+  {% assign href = post.link %}
+{% else %}
+  {% capture href %}{{ base_path }}{{ post.url }}{% endcapture %}
+{% endif %}
+
+<article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  <span class="archive__item-year">{% if post.date %}{{ post.date | date: "%Y" }}{% endif %}</span>
+  <div class="archive__item-body">
+    <h2 class="archive__item-title" itemprop="headline"><a href="{{ href }}">{{ title }}</a></h2>
+
+    {% if post.collection == 'teaching' %}
+      <p class="archive__item-meta">{{ post.type }}, <i>{{ post.venue }}</i></p>
+    {% elsif post.collection == 'publications' %}
+      <p class="archive__item-meta">{% if post.coauthors %}With {{ post.coauthors }}. {% endif %}<i>{{ post.venue }}</i></p>
+    {% endif %}
+
+    {% if post.excerpt and include.excerpt != false %}
+      <div class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</div>
+    {% endif %}
+
+    {% if post.citation %}
+      <p class="archive__item-meta">Recommended citation: {{ post.citation }}</p>
+    {% endif %}
+  </div>
+</article>
